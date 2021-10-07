@@ -12,17 +12,17 @@ int main(int argc, char* argv[])
    {
 	int pid = getpid();
 	char tmp = 'a';
-	read(p_fd[1], &tmp, 1);
+	read(p_fd[0], &tmp, 1);
 	printf("<%d>: receive ping", pid);
-	write(c_fd[0], &tmp, 1);
+	write(c_fd[1], &tmp, 1);
 	exit(0);
    }
    else
    {
 	char tmp = 'a';
 	int pid = getpid();
-	write(p_fd[0], &tmp, 1);
-	read(c_fd[1], &tmp, 1);
+	write(p_fd[1], &tmp, 1);
+	read(c_fd[0], &tmp, 1);
 	printf("<%d>: receive pong", pid);
 	exit(0);
    } 
